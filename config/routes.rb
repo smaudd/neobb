@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :personalization_data
   root to: "board#index"
 
-  get "profile" => "profile#index", as: :profile
+  get "profile" => "profile#index", as: :profile_index
   resources :badges
   resources :categories
   resources :topics
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       patch :unban
     end
   end
+  resources :personalization_data
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -25,6 +25,9 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+    <p class="notice"><%= notice %></p>
+    <% end %>
     <p style="color: red; font-size: 2rem;"><%= alert %></p>
     <%= image_tag "background.png", class: "background" %>
     <main>

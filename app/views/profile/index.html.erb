@@ -1,15 +1,9 @@
 <h1>User's profile</h1>
 
-<%= form_with(model: current_user) do |form| %>
-  <div class="field">
-        <%= form.label :username %>
-        <%= form.text_field :username %>
-  </div>
-  <div class="field">
-        <%= form.label :email_address %>
-        <%= form.text_field :email_address %>
-  </div>
+<%= form_with(model: current_user&.personalization_data) do |form| %>
   <div>
+    <%= form.label :color, style: "display: block" %>
+    <%= form.text_field :color, type: 'color' %>
     <%= form.submit %>
   </div>
 <% end %>

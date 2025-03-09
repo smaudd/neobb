@@ -38,7 +38,8 @@ class RepliesController < ApplicationController
     def update
         respond_to do |format|
             if @reply.update(reply_params)
-                format.html { redirect_to post_path(@reply.post), notice: "Reply was successfully updated." }
+                flash[:notice] = "Reply was successfully updated."
+                format.html { redirect_to post_path(@reply.post) }
             else
                 format.html { render :edit, status: :unprocessable_entity }
             end
@@ -48,7 +49,8 @@ class RepliesController < ApplicationController
     def destroy
         @reply = Reply.find(params[:id])
         @reply.destroy!
-        redirect_to post_path(@reply.post), notice: "Reply was successfully destroyed."
+        flash[:notice] = "Reply was successfully destroyed."
+        redirect_to post_path(@reply.post)
     end
       
     private

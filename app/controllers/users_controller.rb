@@ -25,6 +25,7 @@ class UsersController < ApplicationController
             if user_params[:avatar]
                 @user.avatar.attach(user_params[:avatar])
             end
+            @user.personalization_data = PersonalizationData.new
             format.html { redirect_to @user, notice: "User was successfully created." }
             format.json { render :show, status: :created, location: @user }
         else
