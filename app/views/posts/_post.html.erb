@@ -1,7 +1,13 @@
 <div id="<%= dom_id post %>">
 
-  <h1><%= post.title %></h1>
+  <p>
+    <%= post.topic.name %>
+  </p>
 
+  <h1><%= post.title %></h1>
+  <span>
+    <%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %>
+  </span>
   <p>
     by <a><%= post.user.username %></a>
   </p>
@@ -10,14 +16,10 @@
     <%= post.body %>
   </div>
 
-  <p>
-    <strong>Published:</strong>
-    <%= post.published %>
-  </p>
-
-  <p>
-    <strong>Topic:</strong>
-    <%= post.topic.name %>
-  </p>
+  <div class="replies">
+    <% post.replies.each do |reply| %>
+      <%= render reply %>
+    <% end %>
+  </div>
 
 </div>

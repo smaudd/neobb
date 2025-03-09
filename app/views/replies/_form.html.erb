@@ -1,0 +1,8 @@
+<%= form_with(model: @reply) do |form| %>
+  <div>
+    <%= form.hidden_field :post_id, value: @post.id %>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.rich_textarea :body %>
+  </div>
+  <%= form.submit %>
+<% end %>

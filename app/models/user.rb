@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :bans, dependent: :destroy
   has_many :badges
   has_many :posts
+  has_many :replies
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [250, 250]
   end

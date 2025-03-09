@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :replies
   root to: "board#index"
 
   resources :badges

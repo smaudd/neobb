@@ -1,0 +1,5 @@
+<li class="reply">
+    <%= reply.body %>
+    <span class="date"><%= reply.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
+    <span class="author">by <%= reply.user.username %></span>
+<li>
