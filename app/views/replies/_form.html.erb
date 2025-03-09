@@ -1,8 +1,15 @@
 <%= form_with(model: @reply) do |form| %>
-  <div>
+  <div class="reply-form <% if not params[:edit_reply] %>hidden<% else %>slide-up<% end %>">
     <%= form.hidden_field :post_id, value: @post.id %>
-    <%= form.label :body, style: "display: block" %>
+    <%= form.label params[:edit_reply] ? "Edit reply" : "Reply to this post", style: "display: block" %>
     <%= form.rich_textarea :body %>
+    <%= form.submit %>
+    <% if @reply.errors.any? %>
+        <ul class="errors">
+          <% @reply.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+    <% end %>
   </div>
-  <%= form.submit %>
 <% end %>

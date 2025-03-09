@@ -1,5 +1,16 @@
 <li class="reply">
+    <div class="title">
+        <div>
+            <span class="author"><%= reply.user.username %></span>
+            <span class="date"><%= reply.created_at&.strftime("%B %d, %Y %H:%M:%S") %></span>
+        </div>
+        <% if current_user.id == reply.user_id %>
+        <div class="actions">
+            <%= link_to "Edit", edit_reply_path(reply), class: "button" %>
+            <%= button_to "Delete", reply, method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+    <% end %>
+    </div>
     <%= reply.body %>
-    <span class="date"><%= reply.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
-    <span class="author">by <%= reply.user.username %></span>
+
 <li>

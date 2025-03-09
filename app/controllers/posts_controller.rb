@@ -8,6 +8,11 @@ class PostsController < ApplicationController
 
   def show
     @reply = Reply.new
+    if params[:edit_reply]
+      @reply = Reply.find(params[:edit_reply].to_i)
+    end
+    per_page =  Rails.application.config.default_pagination_limit
+    @replies, @total_pages, @page = paginate(Reply.where(post_id: @post.id), per_page: per_page)
   end
 
   def new
@@ -55,7 +60,7 @@ class PostsController < ApplicationController
 
   private
     def set_post
-      @post = Post.find_by(id: params[:id])
+      @post = Post.find_by(slug: params[:id])
     
       if @post.nil?
         # TODO: Show a 404 page instead

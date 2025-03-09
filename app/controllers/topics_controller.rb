@@ -6,14 +6,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    page = params[:page].presence&.to_i || 1  # Default to 1 if page is missing or invalid
-    page = 1 if page < 1  # Ensure the page is at least 1
-  
-    @per_page = 1  # Number of records per page
-    offset = (page - 1) * @per_page  # Correct the offset calculation
-    @posts = Post.offset(offset).limit(@per_page).where(topic_id: @topic.id)
-    # Calculate total pages based on the total number of posts
-    @total_pages = (Post.where(topic_id: @topic.id).count.to_f / @per_page).ceil
+    per_page = Rails.application.config.default_pagination_limit
+    @posts, @total_pages = paginate(Post.where(topic_id: @topic.id), per_page: )
   end
   
 

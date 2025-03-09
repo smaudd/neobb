@@ -17,7 +17,7 @@ module Forum
     config.autoload_lib(ignore: %w[assets tasks])
     # config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
-
+    config.default_pagination_limit = 10
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
