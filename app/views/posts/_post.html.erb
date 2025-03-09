@@ -5,7 +5,7 @@
         <%= post.topic.name %>
       </p>
       <div class="actions">
-        <% if current_user == @post.user %>
+        <% if current_user == @post&.user %>
           <%= link_to "Edit", edit_post_path(@post), class: "button" %>
           <%= button_to "Delete", @post, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" } %>
         <% end %>

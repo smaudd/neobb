@@ -150,8 +150,6 @@ select {
 .topics .topic {
   border: 2px solid var(--gray);
   border-radius: var(--primary-radius);
-
-  padding: 0.5rem;
 }
 
 .title {

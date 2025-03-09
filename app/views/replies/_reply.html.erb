@@ -2,7 +2,14 @@
     <div class="title">
         <div>
             <span class="author"><%= reply.user.username %></span>
-            <span class="date"><%= reply.created_at&.strftime("%B %d, %Y %H:%M:%S") %></span>
+            <span class="date">
+                <span class="date"><%= reply.created_at&.strftime("%B %d, %Y %H:%M:%S") %></span>
+            </span>
+            <% if reply.updated_at.to_i > reply.created_at.to_i %>
+                <span class="label">edited</span>
+            <% end %>
+
+            </span>
         </div>
         <% if current_user.id == reply.user_id %>
         <div class="actions">

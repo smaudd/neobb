@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: "board#index"
+
+  get "profile" => "profile#index", as: :profile
   resources :badges
   resources :categories
   resources :topics

@@ -3,7 +3,10 @@
     <%= form.hidden_field :post_id, value: @post.id %>
     <%= form.label params[:edit_reply] ? "Edit reply" : "Reply to this post", style: "display: block" %>
     <%= form.rich_textarea :body %>
-    <%= form.submit %>
+    <div>
+      <%= form.submit %>
+      <%= link_to "Cancel", post_path(@post), class: "button" %>
+    </div>
     <% if @reply.errors.any? %>
         <ul class="errors">
           <% @reply.errors.each do |error| %>
