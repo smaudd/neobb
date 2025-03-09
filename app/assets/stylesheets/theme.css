@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+/* RESETS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,
+li {
+  list-style: none;
+}
+/* END RESETS */
+
+:root {
+  --primary: #b61f30ff;
+  --alt-1: #4d90b4ff;
+  --alt-2: #a5a0feff;
+  --accent: #ffc547ff;
+  --black: #231e2cff;
+  --gray: #bbb;
+  --bottom-background: #cd5c08;
+  --background: #f6fcfe;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  object-fit: cover;
+}
+
+body {
+  font-family: "Comic Neue", cursive;
+  background-color: var(--gray);
+  color: var(--black);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+a {
+  color: var(--black);
+  font-weight: bold;
+}
+
+main {
+  padding: 0.5rem;
+  max-width: 1200px;
+  height: 40rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+  background-color: var(--background);
+  z-index: 2;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button,
+input[type="submit"] {
+  font-family: "Comic Neue", cursive;
+  background-color: var(--primary);
+  font-weight: bold;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+input,
+select {
+  border: 2px solid var(--gray);
+  border-radius: 3px;
+  padding: 0.4em 0.6em;
+  width: 100%;
+}
+
+.root-link {
+  /* text gradient */
+  background: linear-gradient(90deg, var(--primary), var(--alt-2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.topics > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--gray);
+}
+
+.topics .topic .title {
+  font-size: 1em;
+  font-weight: bold;
+  width: 100%;
+}
+
+.topics .posts {
+  width: 100%;
+}
+
+.topics .posts .post {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--gray);
+}
+
+.topics .posts .post:last-child {
+  border-bottom: none;
+}
+
+.author {
+  font-weight: bold;
+}

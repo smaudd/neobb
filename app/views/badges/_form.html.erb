@@ -1,0 +1,32 @@
+<%= form_with(model: badge) do |form| %>
+  <% if badge.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(badge.errors.count, "error") %> prohibited this badge from being saved:</h2>
+
+      <ul>
+        <% badge.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :badge %>
+    <%= form.file_field :badge %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Badges" %>
+
+<h1>Badges</h1>
+
+<div id="badges">
+  <% @badges.each do |badge| %>
+    <%= render badge %>
+    <p>
+      <%= link_to "Show this badge", badge %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New badge", new_badge_path %>

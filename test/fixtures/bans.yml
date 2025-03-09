@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  reason: MyString
+  banned_at: 2025-03-07 21:21:01
+
+two:
+  user: two
+  reason: MyString
+  banned_at: 2025-03-07 21:21:01

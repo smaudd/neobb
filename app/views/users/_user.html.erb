@@ -1,0 +1,24 @@
+<div id="<%= dom_id user %>">
+
+  <% if user.avatar.attached? %>
+  <%= image_tag user.avatar.variant(:thumb) %>
+  <% else %>
+    <p>No avatar uploaded</p>
+  <% end %>
+
+  <p>
+    <strong>username:</strong>
+    <%= user.username %>
+  </p>
+
+  <p>
+    <strong>email:</strong>
+    <%= user.email_address %>
+  </p>
+
+  <p>
+    <strong>role:</strong>
+    <%= user.role %>
+  </p>
+
+</div>

@@ -1,0 +1,32 @@
+
+
+
+<% if member? %>
+  <%= link_to "New Topic", new_topic_path %>
+  <%= link_to "New Category", new_category_path %>
+  <%= link_to "New User", new_user_path %>
+  <%= link_to "New Post", new_post_path %>
+<% end %>
+
+<div class="topics">
+    <% @topics.each do |topic| %>
+        <li class="topic">
+            <div class="title">
+                <h3><%= topic.name %></h3>
+                <span>(<%= topic.posts.count %> posts)</span>
+            </div>
+            <% if topic.posts.any? %>
+                <ul class="posts">
+                    <% topic.posts.each do |post| %>
+                        <li class="post">
+                            <%= link_to post.title, post %>
+                            <%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %>
+                            <p><%= truncate(strip_tags(post.body.to_s), length: 100) %></p>
+                            <span class="author">by <%= post.user.username %></span>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </li>
+    <% end %>
+</div>

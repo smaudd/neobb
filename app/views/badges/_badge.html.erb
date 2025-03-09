@@ -1,0 +1,19 @@
+<div id="<%= dom_id badge %>">
+
+  <% if badge.badge.attached? %>
+  <%= image_tag badge.badge.variant(:thumb) %>
+  <% else %>
+    <p>No badge uploaded</p>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= badge.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= badge.description %>
+  </p>
+
+</div>

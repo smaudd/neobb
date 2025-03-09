@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+
+<% if @user.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+      <% user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @user.bans.empty? %>
+    <%= form_with(url: ban_user_path(@user), method: :patch) do |form| %>
+      <%= form.label :reason, "Reason for Ban" %>
+      <%= form.text_field :reason %>
+      <%= form.submit "Ban" %>
+    <% end %>
+<% else %>
+    <p>This user is banned</p>
+    <span>Reason:</span>
+    <p><%= @user.bans.first.reason %></p>
+
+    <%= form_with(url: unban_user_path(@user), method: :patch) do |form| %>
+      <%= form.submit "Unban" %>
+    <% end %>
+<% end %>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>

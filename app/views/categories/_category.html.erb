@@ -1,0 +1,19 @@
+<div id="<%= dom_id category %>">
+
+  <% if category.icon.attached? %>
+  <%= image_tag category.icon.variant(:thumb) %>
+  <% else %>
+    <p>No icon uploaded</p>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= category.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= category.description %>
+  </p>
+
+</div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Forum" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    
+  </head>
+
+  <body>
+    <p style="color: red; font-size: 2rem;"><%= alert %></p>
+    <%= image_tag "background.png", class: "background" %>
+    <main>
+    <nav>
+      <div class="box">
+      <%= link_to "neobb", root_path, class: "root-link" %>
+      <span>Community forum for internet users</span>
+      </div>
+      <% if current_user %>
+        <%= button_to 'Logout', session_path, method: :delete, data: { turbo_confirm: 'Are you sure you want to log out?' } %>
+      <% else %>
+        <%= button_to "Login", new_session_path, method: :post %>
+        <%= button_to "Sign Up", new_user_path %>
+      <% end %>
+      <!-- 
+      <% if member? %>
+        <%= link_to "New Topic", new_topic_path %>
+        <%= link_to "New Category", new_category_path %>
+        <%= link_to "New User", new_user_path %>
+        <%= link_to "New Post", new_post_path %>
+      <% end %>!-->
+    </nav>
+    
+      <%= yield %>
+    </main>
+  </body>
+</html>
