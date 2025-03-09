@@ -1,0 +1,23 @@
+
+<%= form_with(model: current_user&.personalization_data) do |form| %>
+  <div class="profile">
+    <div class="title">
+      <h1><%= current_user.username %></h1>
+      <%= render 'shared/avatar', form: form %>
+    </div>
+    <%= form.label :color, style: "display: block" %>
+    <%= form.text_field :color, type: "color" %>
+    <%= form.label :bio, style: "display: block" %>
+    <%= form.rich_text_area :bio %>
+    <div class="flex">
+      <div class="field-background-image">
+        <%= form.label :background_image %>
+        <%= form.file_field :background_image, accept: ".jpg, .jpeg, .png, .gif", 'data-controller': "upload", 'data-action': 'change->upload#upload' %>
+          <% if current_user.personalization_data&.background_image.attached? %>
+            <%= image_tag current_user.personalization_data&.background_image&.variant(:thumb), class: "background-image" %>
+          <% end %> 
+      </div>
+    </div>
+    <%= form.submit %>
+  </div>
+<% end %>

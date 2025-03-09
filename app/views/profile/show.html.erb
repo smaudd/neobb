@@ -1,0 +1,3 @@
+<%= render "shared/username", user: @user %>
+<%= image_tag @user.personalization_data&.avatar %>
+<%= @user.personalization_data&.bio %>

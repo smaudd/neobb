@@ -5,7 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Comic Neue", sans-serif !important;
+  /* font-family: "Comic Neue", sans-serif !important; */
+  /* font-family: Arial, Helvetica, sans-serif;
+   */
+   /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 h1 {
   font-size: 1.5rem;
@@ -13,14 +17,16 @@ h1 {
 /* END RESETS */
 
 :root {
-  --primary: #b61f30ff;
-  --alt-1: #4d90b4ff;
-  --alt-2: #a5a0feff;
+  /* --primary: #b61f30ff; */
+  --primary: #4d90b4ff;
+  --alt-2: #ffc547ff;
   --accent: #ffc547ff;
   --black: #231e2cff;
-  --gray: #bbb;
+  --gray: #231e2cff;
   --bottom-background: #cd5c08;
-  --background: #f6fcfedb;
+  /* --background: #f6fcfedb; */
+  /* --background: rgba(165, 160, 254, 0.9); */
+  --background: white;
 
   --primary-radius: 1rem;
 }
@@ -29,6 +35,9 @@ h1 {
   position: fixed;
   inset: 0;
   object-fit: cover;
+  background-repeat: repeat;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -59,6 +68,12 @@ nav {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .actions {
@@ -177,12 +192,8 @@ select {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  border: 2px solid var(--gray);
+  background-color: white;
   border-radius: var(--primary-radius);
-}
-
-.author {
-  font-weight: bold;
 }
 
 .pagination {
@@ -269,8 +280,8 @@ trix-editor {
 
 .trix-button {
   border: none !important;
-  border-radius: 0 !important;
-  background-color: var(--accent) !important;
+  border-radius: 0.5rem!important;
+  background-color: var(--primary) !important;
   color: white !important;
 }
 
@@ -308,6 +319,68 @@ trix-toolbar .trix-button-group {
   padding: 0.5rem;
   animation: appear 0.5s ease-in-out, disappear 1s 3.5s forwards; /* The disappear animation starts after 4.5s */
   box-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.username {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.profile {
+}
+
+.profile .background-image {
+  object-fit: cover;
+  width: 24rem;
+  height: 24rem;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 2px solid var(--gray);
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.field-background-image {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border: 2px solid var(--gray);
+  border-radius: var(--primary-radius);
+  overflow: hidden;
+}
+.avatar input,
+.field-background-image input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.field-background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.field-background-image label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
 }
 
 @keyframes appear {

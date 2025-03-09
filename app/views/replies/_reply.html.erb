@@ -1,7 +1,7 @@
 <li class="reply">
     <div class="title">
         <div>
-            <span class="author"><%= reply.user.username %></span>
+            <%= render "shared/username", user: reply.user %>
             <span class="date">
                 <span class="date"><%= reply.created_at&.strftime("%B %d, %Y %H:%M:%S") %></span>
             </span>
@@ -14,7 +14,7 @@
         <% if current_user.id == reply.user_id %>
         <div class="actions">
             <%= link_to "Edit", edit_reply_path(reply), class: "button" %>
-            <%= button_to "Delete", reply, method: :delete, data: { confirm: "Are you sure?" } %>
+            <%= button_to "Delete", reply, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
         </div>
     <% end %>
     </div>

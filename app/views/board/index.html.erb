@@ -27,7 +27,7 @@
                                 <span class="label"><%= post.replies.count %> replies</span>
                             </div>
                             <span class="date"><%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
-                            <span class="author">by <%= post.user.username %></span>
+                            <span class="author">by <%= render "shared/username", user: post.user %></span>
                         </li>
                     <% end %>
                 </ul>

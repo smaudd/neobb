@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :personalization_data
   root to: "board#index"
 
-  get "profile" => "profile#index", as: :profile_index
+  get "profile" => "profile#edit", as: :profile_edit
+  get ":username" => "profile#show", as: :profile
   resources :badges
   resources :categories
   resources :topics

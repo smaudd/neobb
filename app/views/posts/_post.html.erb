@@ -16,7 +16,7 @@
       <%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %>
     </span>
     <p>
-      by <a><%= post.user.username %></a>
+      by <%= render "shared/username", user: post.user %>
     </p>
     <%= post.body %>
   </div>

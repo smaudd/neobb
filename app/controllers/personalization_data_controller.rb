@@ -9,7 +9,7 @@ class PersonalizationDataController < ApplicationController
         flash[:alert] = "Failed to update personalization."
       end
   
-      redirect_to profile_index_path
+      redirect_to profile_edit_path
     end
   
     def create
@@ -21,7 +21,7 @@ class PersonalizationDataController < ApplicationController
       else
         flash[:alert] = "Failed to create personalization."
       end
-      redirect_to profile_index_path
+      redirect_to profile_edit_path
     end
   
     private
@@ -33,20 +33,16 @@ class PersonalizationDataController < ApplicationController
   
     # Set default values for background_color and color if they are not set
     def set_defaults
-      # Ensure we're either setting or creating personalization data for the user
       @personalization_data ||= current_user.build_personalization_data
-    #   @personalization_data.background_color ||= random_hex_color
       @personalization_data.color ||= random_hex_color
     end
   
-    # Find the personalization data for the current user
     def set_personalization_data
       @personalization_data = current_user.personalization_data
     end
   
-    # Permit the color parameter and add user_id (using current_user.id)
     def personalization_data_params
-      params.require(:personalization_data).permit(:color).merge(user_id: current_user.id)
+      params.require(:personalization_data).permit(:color, :avatar, :background_image, :bio).merge(user_id: current_user.id)
     end
   end
   

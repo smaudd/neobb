@@ -1,0 +1,6 @@
+<div class="avatar">
+    <%= form.file_field :avatar, accept: ".jpg, .jpeg, .png, .gif", 'data-controller': "upload", 'data-action': 'change->upload#upload' %>
+    <% if current_user.personalization_data&.avatar.attached? %>
+    <%= image_tag current_user.personalization_data&.avatar.variant(:thumb) %>
+    <% end %> 
+</div>
