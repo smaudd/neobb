@@ -1,17 +1,25 @@
 <div id="<%= dom_id topic %>">
-  <p>
-    <strong>Name:</strong>
+  <h1>
     <%= topic.name %>
-  </p>
+  </h1>
 
   <p>
-    <strong>Description:</strong>
     <%= topic.description %>
   </p>
 
-  <p>
-    <strong>Category:</strong>
-    <%= topic.category.name %>
-  </p>
+  <% if @posts.any? %>
+      <ul class="posts">
+          <% @posts.each do |post| %>
+              <li class="post">
+                  <%= link_to post.title, post %>
+                  <span class="date"><%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
+                  <p><%= truncate(strip_tags(post.body.to_s), length: 100) %></p>
+                  <span class="author">by <%= post.user.username %></span>
+              </li>
+          <% end %>
+      </ul>
+  <% end %>
+
+  <%= render "shared/pagination", page: params[:page].to_i || 1, total_pages: @total_pages %>
 
 </div>

@@ -1,19 +1,14 @@
 <div id="<%= dom_id post %>">
 
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+  <h1><%= post.title %></h1>
 
   <p>
-    <strong>Author:</strong>
-    <%= post.user.username %>
+    by <a><%= post.user.username %></a>
   </p>
 
-  <p>
-    <strong>Body:</strong>
+  <div>
     <%= post.body %>
-  </p>
+  </div>
 
   <p>
     <strong>Published:</strong>

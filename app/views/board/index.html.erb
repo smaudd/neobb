@@ -8,20 +8,22 @@
   <%= link_to "New Post", new_post_path %>
 <% end %>
 
-<div class="topics">
+<ul class="topics">
     <% @topics.each do |topic| %>
         <li class="topic">
             <div class="title">
-                <h3><%= topic.name %></h3>
+                <h3>
+                  <%= link_to topic.name, topic %>
+                </h3>
                 <span>(<%= topic.posts.count %> posts)</span>
             </div>
+            <p><%= topic.description %></p>
             <% if topic.posts.any? %>
                 <ul class="posts">
                     <% topic.posts.each do |post| %>
                         <li class="post">
                             <%= link_to post.title, post %>
-                            <%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %>
-                            <p><%= truncate(strip_tags(post.body.to_s), length: 100) %></p>
+                            <span class="date"><%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
                             <span class="author">by <%= post.user.username %></span>
                         </li>
                     <% end %>
@@ -29,4 +31,4 @@
             <% end %>
         </li>
     <% end %>
-</div>
+</ul>

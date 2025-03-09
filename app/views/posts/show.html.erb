@@ -3,7 +3,6 @@
 <%= render @post %>
 
 <div>
-  AAAA<%= current_user %>
   <% if current_user == @post.user %>
     <%= link_to "Edit this post", edit_post_path(@post) %> |
   <% end %>

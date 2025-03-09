@@ -36,8 +36,10 @@
       <% if current_user %>
         <%= button_to 'Logout', session_path, method: :delete, data: { turbo_confirm: 'Are you sure you want to log out?' } %>
       <% else %>
-        <%= button_to "Login", new_session_path, method: :post %>
-        <%= button_to "Sign Up", new_user_path %>
+        <div class="actions">
+          <%= button_to "Login", new_session_path, method: :post %>
+          <%= button_to "Sign Up", new_user_path %>
+        </div>
       <% end %>
       <!-- 
       <% if member? %>
