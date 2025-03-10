@@ -4,31 +4,43 @@
 <% if member? %>
   <%= link_to "New Topic", new_topic_path %>
   <%= link_to "New Category", new_category_path %>
-  <%= link_to "New User", new_user_path %>
+  <%= link_to "New User", register_path %>
   <%= link_to "New Post", new_post_path %>
 <% end %>
 
-<ul class="topics">
+<ul class="flex flex-col gap-4">
     <% @topics.each do |topic| %>
-        <li class="topic">
-            <div class="title">
-                <h3>
+        <li class="p-2 border border-[var(--divider)] rounded-[var(--border-radius)] shadow-[var(--shadow)]">
+            <div class="grid grid-cols-[3fr_0.5fr] gap-1">
+                <h3 class="font-bold text-xl">
                   <%= link_to topic.name, topic %>
                 </h3>
-                <span>(<%= topic.posts.count %> posts)</span>
+                <span class="font-bold text-sm justify-self-end">(<%= topic.posts.count %> posts)</span>
             </div>
             <p><%= topic.description %></p>
+            <hr class="border-[var(--divider)]" />
             <% if topic.posts.any? %>
-                <ul class="posts">
-                    <% topic.posts.each do |post| %>
-                        <li class="post">
-                            <div class="title">
-                                <h4><%= link_to post&.title, post %></h4>
-                                <span class="label"><%= post.replies.count %> replies</span>
+                <ul class="flex flex-col gap-2 py-2">
+                    <% topic.posts.each_with_index do |post, index| %>
+                        <li class="flex flex-col rounded-[var(--border-radius)] shadow-[var(--shadow)]" data-even="<%= index.even? %>">
+                            <div class="grid grid-cols-[3fr_0.5fr] gap-1">
+                                <h4 class="font-bold"><%= link_to post&.title, post %></h4>
+                                <span class="text-sm font-bold justify-self-end">(<%= post.replies.count %> replies)</span>
                             </div>
-                            <span class="date"><%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %></span>
-                            <span class="author">by <%= render "shared/username", user: post.user %></span>
+                            <div class="flex gap-1">
+                                <span class="date text-sm"><%= post.created_at.strftime('%Y-%m-%d %H:%M:%S') %></span>
+                                <span class="text-sm">by <%= render "shared/username", user: post.user %></span>
+                            </div>
+                            <% if post.replies.any? %>
+                                <div class="flex gap-1">
+                                    <span class="text-sm">Last reply <%= time_ago_in_words(post.replies&.last&.created_at) %> ago</span>
+                                    <span class="text-sm">by <%= render "shared/username", user: post.replies&.last&.user %></span>
+                                </div>
+                            <% else %>
+                                <span class="text-sm">No replies yet</span>
+                            <% end %>
                         </li>
+                        <% if index < topic.posts.count - 1 %><hr class="border-[var(--divider)]" /><% end %>
                     <% end %>
                 </ul>
             <% end %>

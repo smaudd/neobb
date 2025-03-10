@@ -1,11 +1,9 @@
 <%= form_with(model: @reply) do |form| %>
-  <div class="reply-form <% if not params[:edit_reply] %>hidden<% else %>slide-up<% end %>">
+  <div class="reply-form mt-2 bottom-0 left-0 p-2 w-full">
     <%= form.hidden_field :post_id, value: @post.id %>
-    <%= form.label params[:edit_reply] ? "Edit reply" : "Reply to this post", style: "display: block" %>
     <%= form.rich_textarea :body %>
-    <div>
-      <%= form.submit %>
-      <%= link_to "Cancel", post_path(@post), class: "button" %>
+    <div class="flex gap-2 mt-2 justify-end">
+      <%= form.submit "Reply", class: "cta" %>
     </div>
     <% if @reply.errors.any? %>
         <ul class="errors">

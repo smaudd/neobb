@@ -1,14 +1,20 @@
 
 <%= form_with(model: current_user&.personalization_data) do |form| %>
-  <div class="profile">
-    <div class="title">
-      <h1><%= current_user.username %></h1>
-      <%= render 'shared/avatar', form: form %>
+  <div class="flex justify-between items-center gap-4 pt-4">
+    <h1 class="text-lg font-bold my-2 flex items-center gap-2">
+      <%= form.text_field :color, type: "color", class: "cursor-pointer w-8 h-8" %>
+      <%= render 'shared/username', user: current_user %>
+    </h1>
+    <div class="flex">
+      <div class="flex flex-col items-center justify-center gap-2">
+        <%= render 'shared/avatar', form: form %>
+      </div>
     </div>
-    <%= form.label :color, style: "display: block" %>
-    <%= form.text_field :color, type: "color" %>
-    <%= form.label :bio, style: "display: block" %>
+  </div>
+  <hr class="border-[var(--divider)] my-4" />
+  <div class="flex flex-col gap-2">
     <%= form.rich_text_area :bio %>
+    <!-- 
     <div class="flex">
       <div class="field-background-image">
         <%= form.label :background_image %>
@@ -17,7 +23,7 @@
             <%= image_tag current_user.personalization_data&.background_image&.variant(:thumb), class: "background-image" %>
           <% end %> 
       </div>
-    </div>
-    <%= form.submit %>
-  </div>
+    </div> -->
+    <%= form.submit "Save", class: "cta self-start" %>
+  
 <% end %>

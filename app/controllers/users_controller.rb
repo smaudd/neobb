@@ -26,11 +26,9 @@ class UsersController < ApplicationController
                 end
                 @user.personalization_data = PersonalizationData.new
                 flash[:notice] = "User was successfully created."
-                format.html { redirect_to @user }
-                format.json { render :show, status: :created, location: @user }
+                format.html { redirect_to root_path }
             else
                 format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -42,11 +40,9 @@ class UsersController < ApplicationController
                     @user.avatar.attach(user_params[:avatar])
                 end
                 flash[:notice] = "User was successfully updated."
-                format.html { redirect_to @user }
-                format.json { render :show, status: :ok, location: @user }
+                format.html { redirect_to root_path }
             else
                 format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -55,14 +51,13 @@ class UsersController < ApplicationController
         @user.destroy!
         respond_to do |format|
             flash[:notice] = "User was successfully destroyed."
-            format.html { redirect_to users_path, status: :see_other }
-            format.json { head :no_content }
+            format.html { redirect_to login_path, status: :see_other }
         end
     end
 
     def ban
         if @user.nil?
-            redirect_to users_path, notice: "User not found"
+            redirect_to login, notice: "User not found"
             return
         end
 
@@ -71,10 +66,10 @@ class UsersController < ApplicationController
         respond_to do |format|
             if @ban.save
                 flash[:notice] = "User was successfully banned."
-                format.html { redirect_to @user }
+                format.html { redirect_to root_path }
             else
                 flash[:notice] = "Failed to ban user."
-                format.html { redirect_to @user }
+                format.html { redirect_to root_path }
             end
         end
     end
@@ -82,7 +77,7 @@ class UsersController < ApplicationController
     def unban
         if @user.nil?
             flash[:notice] = "User not found"
-            redirect_to users_path
+            redirect_to login
             return
         end
 
@@ -90,14 +85,14 @@ class UsersController < ApplicationController
         if @ban.nil?
             respond_to do |format|
                 flash[:notice] = "User is not banned."
-                format.html { redirect_to @user }
+                format.html { redirect_to root_path }
             end
             return
         end
         @ban.destroy!
         respond_to do |format|
             flash[:notice] = "User was successfully unbanned."
-            format.html { redirect_to @user }
+            format.html { redirect_to root_path }
         end
     end
 

@@ -1,6 +1,6 @@
-<div class="avatar">
-    <%= form.file_field :avatar, accept: ".jpg, .jpeg, .png, .gif", 'data-controller': "upload", 'data-action': 'change->upload#upload' %>
-    <% if current_user.personalization_data&.avatar.attached? %>
-    <%= image_tag current_user.personalization_data&.avatar.variant(:thumb) %>
+<div class="relative w-24 h-24 border border-[var(--divider)] rounded-[var(--border-radius)] shadow-[var(--shadow)]">
+    <%= form.file_field :avatar, accept: ".jpg, .jpeg, .png, .gif", 'data-controller': "upload", 'data-action': 'change->upload#upload', class: "absolute inset-0 opacity-0 cursor-pointer" %>
+    <% if @user.personalization_data&.avatar.attached? %>
+    <%= image_tag current_user.personalization_data&.avatar.variant(:thumb), class: "w-full h-full object-cover" %>
     <% end %> 
 </div>

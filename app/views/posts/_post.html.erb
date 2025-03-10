@@ -1,17 +1,19 @@
 <div id="<%= dom_id post %>" class="post">
-  <div class="post-content">
-    <div class="title">
+  <div class="flex flex-col">
+    <div class="flex flex-col">
       <p>
         <%= post.topic.name %>
       </p>
-      <div class="actions">
+      <div class="flex gap-2 justify-between">
+        <h1><%= post.title %></h1>
         <% if current_user == @post&.user %>
-          <%= link_to "Edit", edit_post_path(@post), class: "button" %>
-          <%= button_to "Delete", @post, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" } %>
+          <div class="flex gap-2">
+            <%= link_to "Edit", edit_post_path(@post), class: "cta" %>
+            <%= button_to "Delete", @post, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this post?" }, class: "cta" %>
+          </div>
         <% end %>
       </div>
     </div>
-    <h1><%= post.title %></h1>
     <span>
       <%= post.created_at.strftime("%B %d, %Y %H:%M:%S") %>
     </span>
@@ -21,13 +23,15 @@
     <%= post.body %>
   </div>
   <% if @replies %>
-    <div class="replies">
-      <h2 class="label">replies (<%= post.replies.count %>)</h2>
-      <% @replies.each do |reply| %>
+    <ul class="my-4">
+      <h2 class="label font-bold mb-2">Replies (<%= post.replies.count %>)</h2>
+      <% @replies.each_with_index do |reply, index| %>
         <%= render reply %>
+        <% if index < @replies.count - 1 %><hr class="divider my-2" /><% end %>
       <% end %>
-    </div>
-    <%= render "shared/pagination", page_param: params[:page], total_pages: @total_pages, path: ->(page:) { post_path(@post, page: page) } %>
+    </ul>
   <% end %>
-  <button data-controller="toggle" data-action="click->toggle#toggle" data-target=".reply-form">Reply to this post</button>
+  <div class="mt-2">
+    <%= render "shared/pagination", page_param: params[:page], total_pages: @total_pages, path: ->(page:) { post_path(@post, page: page) } %>
+  </div>
 </div>

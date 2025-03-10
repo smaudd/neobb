@@ -3,20 +3,19 @@ Rails.application.routes.draw do
   root to: "board#index"
 
   get "profile" => "profile#edit", as: :profile_edit
+  get "register" => "users#new", as: :register
+  get "login" => "sessions#new", as: :login
+  post "ban" => "users#ban", as: :ban
+  post "unban" => "users#unban", as: :unban
   get ":username" => "profile#show", as: :profile
   resources :badges
   resources :categories
   resources :topics
   resources :posts
-  resource :session
+  # resource :session
   resources :passwords, param: :token
   resources :replies
-  resources :users do
-    member do
-      patch :ban
-      patch :unban
-    end
-  end
+
   resources :personalization_data
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
