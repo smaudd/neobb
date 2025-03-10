@@ -33,8 +33,8 @@
 
 # UI current Iteration
 
-![Forum Screenshot Landing](docs/images/ui_suggestion_landing.png)
-![Forum Screenshot Post/Reply UI](docs/images/ui_suggestion_user_reply.png)
+![Forum Screenshot Landing](docs/images/ui_1.png)
+![Forum Screenshot Post/Reply UI](docs/images/ui_2.png)
 
 # How to run
 
