@@ -8,25 +8,25 @@
 
 **neobb** is developed using [Ruby on Rails](https://rubyonrails.org/)
 
-### ✅ Completed Features (pending for testing)
+### Completed Features (pending for testing)
 
 - **Domain Registration** (neobb.org)
-- User registration ✅
-- User's can log in ✅
-- Password recovery 🔄 (Partially implemented)
-- CRUD for topics and replies ✅
+- User registration: DONE
+- User's can log in: DONE
+- Password recovery: (Partially implemented)
+- CRUD for topics and replies: DONE
 
-### 🚧 In Progress
+### In Progress
 
 - **User System**
   - General CSS for UI (still defining if [Tailwind CSS](https://tailwindcss.com/) is a good fit or not for this project)
-  - Ban system 🔄
-  - Login view 🔄
-  - User's can personalize their profile and overall forum experience (background, theme, etc) 🔄
+  - Ban system
+  - Login view
+  - User's can personalize their profile and overall forum experience (background, theme, etc)
     - This is going to be implemented using CSS variables to style general colors, radiuses etc
-  - Password recovery 🔄
+  - Password recovery
 
-### 🔜 Planned Features
+### Planned Features
 
 - Daily poll to choose the forum's background image
 - Moderation tools
